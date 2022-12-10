@@ -8,14 +8,15 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> {
 
-    private String[] localDataSet;
+    // private String[] localDataSet;
 
     Context context;
-    List<TableTeam> tableTeamList;
+    ArrayList<TableTeam> tableTeamList;
 
     /**
      * Provide a reference to the type of views that you are using
@@ -59,11 +60,11 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
     /**
      * Initialize the dataset of the Adapter.
      *
-     * @param dataSet String[] containing the data to populate views to be used
+     * @param tableTeamList ArrayList<TableTeam> containing the data to populate views to be used
      * by RecyclerView.
      */
-    public TableAdapter(String[] dataSet) {
-        localDataSet = dataSet;
+    public TableAdapter(ArrayList<TableTeam> tableTeamList) {
+        this.tableTeamList = tableTeamList;
         // this.context = context;
         // this.tableTeamList = tableTeamList;
     }
@@ -84,15 +85,24 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.getTvPlace().setText(localDataSet[position]);
-        viewHolder.getTvTeam().setText(localDataSet[position]);
-        viewHolder.getTvGoals().setText(localDataSet[position]);
-        viewHolder.getTvPoints().setText(localDataSet[position]);
+
+        // i.	holder.tvPlace.setText(“”+(position+1));
+        // ii.	holder.tvTeam.setText(tableTeamList.get(position).teamName);
+
+        viewHolder.getTvPlace().setText("1");
+        viewHolder.getTvTeam().setText("2");
+        viewHolder.getTvGoals().setText("3");
+        viewHolder.getTvPoints().setText("4");
+
+        // viewHolder.getTvPlace().setText(""+(position+1));
+        // viewHolder.getTvTeam().setText(tableTeamList.get(position).teamName);
+        // viewHolder.getTvGoals().setText(tableTeamList.get(position).goals);
+        // viewHolder.getTvPoints().setText(tableTeamList.get(position).points);
     }
 
     // Return the size of your dataset (invoked by the layout manager)
     @Override
     public int getItemCount() {
-        return localDataSet.length;
+        return tableTeamList.size();
     }
 }
