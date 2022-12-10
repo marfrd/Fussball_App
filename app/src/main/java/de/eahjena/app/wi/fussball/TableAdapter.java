@@ -4,6 +4,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -24,7 +25,8 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
      */
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private final TextView tvPlace;
-        // private final ImageView ivLogo;
+
+        private final ImageView ivLogo;
         private final TextView tvTeam;
         private final TextView tvGoals;
         private final TextView tvPoints;
@@ -34,7 +36,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
             // Define click listener for the ViewHolder's View
 
             tvPlace = (TextView) view.findViewById(R.id.tv_place);
-            // ivLogo = (ImageView) view.findViewById(R.id.iv_logo);
+            ivLogo = (ImageView) view.findViewById(R.id.iv_logo);
             tvTeam = (TextView) view.findViewById(R.id.tv_teams);
             tvGoals = (TextView) view.findViewById(R.id.tv_goals);
             tvPoints = (TextView) view.findViewById(R.id.tv_points);
@@ -42,6 +44,10 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
 
         public TextView getTvPlace() {
             return tvPlace;
+        }
+
+        public ImageView getIvLogo() {
+            return ivLogo;
         }
 
         public TextView getTvTeam() {
@@ -63,10 +69,9 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
      * @param tableTeamList ArrayList<TableTeam> containing the data to populate views to be used
      * by RecyclerView.
      */
-    public TableAdapter(ArrayList<TableTeam> tableTeamList) {
+    public TableAdapter(Context context, ArrayList<TableTeam> tableTeamList) {
+        this.context = context;
         this.tableTeamList = tableTeamList;
-        // this.context = context;
-        // this.tableTeamList = tableTeamList;
     }
 
     // Create new views (invoked by the layout manager)
@@ -86,18 +91,11 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
 
-        // i.	holder.tvPlace.setText(“”+(position+1));
-        // ii.	holder.tvTeam.setText(tableTeamList.get(position).teamName);
-
-        viewHolder.getTvPlace().setText("1");
-        viewHolder.getTvTeam().setText("2");
-        viewHolder.getTvGoals().setText("3");
-        viewHolder.getTvPoints().setText("4");
-
-        // viewHolder.getTvPlace().setText(""+(position+1));
-        // viewHolder.getTvTeam().setText(tableTeamList.get(position).teamName);
-        // viewHolder.getTvGoals().setText(tableTeamList.get(position).goals);
-        // viewHolder.getTvPoints().setText(tableTeamList.get(position).points);
+        viewHolder.getTvPlace().setText(""+(position+1));
+        viewHolder.getIvLogo().setImageResource(context.getResources().getIdentifier(tableTeamList.get(position).teamIconUrl, "drawable", context.getPackageName()));
+        viewHolder.getTvTeam().setText(tableTeamList.get(position).teamName);
+        viewHolder.getTvGoals().setText(""+tableTeamList.get(position).goals);
+        viewHolder.getTvPoints().setText(""+tableTeamList.get(position).points);
     }
 
     // Return the size of your dataset (invoked by the layout manager)

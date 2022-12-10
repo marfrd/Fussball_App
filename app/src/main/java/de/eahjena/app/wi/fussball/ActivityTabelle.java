@@ -28,12 +28,10 @@ public class ActivityTabelle extends AppCompatActivity {
                 98,
                 13,
                 21,
-                "URL"
+                "a_1_fsv_mainz_05"
         ));
-        // String[] tableTeamList = {"Volvo", "BMW", "Ford", "Mazda"};
         RecyclerView recyclerView = findViewById(R.id.team_table);
-        // TableAdapter tableAdapter = new TableAdapter(this,tableTeamList);
-        TableAdapter tableAdapter = new TableAdapter(tableTeamList);
+        TableAdapter tableAdapter = new TableAdapter(this, tableTeamList);
         recyclerView.setAdapter( tableAdapter );
         recyclerView.setLayoutManager( new LinearLayoutManager(this) );
     }

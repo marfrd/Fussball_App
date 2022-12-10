@@ -6,8 +6,9 @@
 </androidx.constraintlayout.widget.ConstraintLayout>-->
 
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="30dp"
+    android:layout_height="20dp"
     android:layout_marginLeft="0dp"
     android:layout_marginRight="0dp"
     android:gravity="center_vertical">
@@ -16,10 +17,15 @@
         android:id="@+id/tv_place"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Jia klar"/>
+        android:text="Jia klar" />
 
 
-
+    <ImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="55dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="40dp"
+        app:srcCompat="@drawable/a_1_fc_nuernberg" />
 
     <TextView
         android:id="@+id/tv_teams"
@@ -33,7 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="200dp"
-        android:text="Najalar"/>
+        android:text="Najalar" />
 
     <TextView
         android:id="@+id/tv_points"
