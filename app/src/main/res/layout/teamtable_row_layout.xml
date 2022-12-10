@@ -17,6 +17,7 @@
         android:id="@+id/tv_place"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:textColor="#ffffff"
         android:text="Jia klar" />
 
 
@@ -32,6 +33,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="100dp"
+        android:textColor="#ffffff"
         android:text="Ne" />
 
     <TextView
@@ -39,6 +41,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="200dp"
+        android:textColor="#ffffff"
         android:text="Najalar" />
 
     <TextView
@@ -46,5 +49,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="300dp"
+        android:textColor="#ffffff"
         android:text="Eh" />
 </FrameLayout>
