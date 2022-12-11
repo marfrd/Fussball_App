@@ -92,7 +92,7 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
         viewHolder.getTvPlace().setText(""+(position+1));
         viewHolder.getIvLogo().setImageDrawable(tableTeamList.get(position).teamIcon);
         viewHolder.getTvTeam().setText(tableTeamList.get(position).teamName);
-        viewHolder.getTvGoals().setText(""+tableTeamList.get(position).goals);
+        viewHolder.getTvGoals().setText("+"+tableTeamList.get(position).goals);
         viewHolder.getTvPoints().setText(""+tableTeamList.get(position).points);
 
         // viewHolder.getIvLogo().setImageDrawable(AppCompatResources.getDrawable(context, R.drawable.a_1_fc_nuernberg));
