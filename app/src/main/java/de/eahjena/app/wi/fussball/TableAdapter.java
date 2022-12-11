@@ -1,12 +1,14 @@
 package de.eahjena.app.wi.fussball;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.content.res.AppCompatResources;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -65,11 +67,8 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
 
     /**
      * Initialize the dataset of the Adapter.
-     *
-     * @param tableTeamList ArrayList<TableTeam> containing the data to populate views to be used
-     * by RecyclerView.
      */
-    public TableAdapter(Context context, ArrayList<TableTeam> tableTeamList) {
+    public TableAdapter(Context context) {
         this.context = context;
     }
 
@@ -91,10 +90,15 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
         // contents of the view with that element
 
         viewHolder.getTvPlace().setText(""+(position+1));
-        viewHolder.getIvLogo().setImageResource(context.getResources().getIdentifier(tableTeamList.get(position).teamIconUrl, "drawable", context.getPackageName()));
+        viewHolder.getIvLogo().setImageDrawable(tableTeamList.get(position).teamIcon);
         viewHolder.getTvTeam().setText(tableTeamList.get(position).teamName);
         viewHolder.getTvGoals().setText(""+tableTeamList.get(position).goals);
         viewHolder.getTvPoints().setText(""+tableTeamList.get(position).points);
+
+        // viewHolder.getIvLogo().setImageDrawable(AppCompatResources.getDrawable(context, R.drawable.a_1_fc_nuernberg));
+        // viewHolder.getIvLogo().setImageResource(context.getResources().getIdentifier(tableTeamList.get(position).teamIconUrl, "drawable", context.getPackageName()));
+        // viewHolder.getIvLogo().setImageDrawable(AppCompatResources.getDrawable(context, R.drawable.spvgg_greuther_fuerth));
+
     }
 
     // Return the size of your dataset (invoked by the layout manager)

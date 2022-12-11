@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.ImageView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -31,22 +32,6 @@ public class ActivityTabelle extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tabelle);
 
-        ArrayList<TableTeam> tableTeamList = new ArrayList<TableTeam>();
-        tableTeamList.add(new TableTeam(
-                23,
-                34,
-                "TEST",
-                "PEST",
-                45,
-                56,
-                67,
-                78,
-                98,
-                13,
-                21,
-                "a_1_fsv_mainz_05"
-        ));
-
         /*
         JsonReader reader = new JsonReader();
         reader.execute("https://www.openligadb.de/api/getmatchdata/bl1");
@@ -54,7 +39,7 @@ public class ActivityTabelle extends AppCompatActivity {
         */
 
         RecyclerView recyclerView = findViewById(R.id.team_table);
-        TableAdapter tableAdapter = new TableAdapter(this, tableTeamList);
+        TableAdapter tableAdapter = new TableAdapter(this);
         recyclerView.setAdapter( tableAdapter );
         recyclerView.setLayoutManager( new LinearLayoutManager(this) );
     }

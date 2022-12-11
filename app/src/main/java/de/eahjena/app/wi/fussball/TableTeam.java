@@ -1,5 +1,7 @@
 package de.eahjena.app.wi.fussball;
 
+import android.graphics.drawable.Drawable;
+
 public class TableTeam {
     int place;
     int teamInfoId;
@@ -13,6 +15,7 @@ public class TableTeam {
     int opponentgoals;
     int points;
     String teamIconUrl;
+    Drawable teamIcon;
 
     public TableTeam(int place, int teamInfoId, String teamName, String shortName, int matches, int won, int draw, int lost, int goals, int opponentgoals, int points, String teamIconUrl) {
         this.place = place;

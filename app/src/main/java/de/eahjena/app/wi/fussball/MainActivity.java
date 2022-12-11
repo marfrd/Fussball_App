@@ -4,7 +4,9 @@ import static de.eahjena.app.wi.fussball.MainApplication.goalList;
 import static de.eahjena.app.wi.fussball.MainApplication.matchList;
 import static de.eahjena.app.wi.fussball.MainApplication.tableTeamList;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -12,6 +14,7 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.content.res.AppCompatResources;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -33,6 +36,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     Handler mainHandler = new Handler();
+    ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +62,17 @@ public class MainActivity extends AppCompatActivity {
         String data = "";
 
         public void run() {
+
+
+            mainHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    progressDialog = new ProgressDialog(MainActivity.this);
+                    progressDialog.setMessage("Daten werden geladen");
+                    progressDialog.setCancelable(false);
+                    progressDialog.show();
+                }
+            });
 
 
             // GOALS + MATCHES
@@ -142,14 +157,6 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
-            /*
-            mainHandler.post(new Runnable() {
-                @Override
-                public void run() {
-                    Log.d("", "hhhhhh"+result.toString());
-                }
-            });
-            */
 
 
             // TABLETEAMS
@@ -199,6 +206,12 @@ public class MainActivity extends AppCompatActivity {
                                 teamIconUrl
                         );
 
+
+                        tableTeam.teamIcon = LoadImageFromWebOperations(teamIconUrl);
+                        // while(tableTeam.teamIcon == null) {
+                        //     tableTeam.teamIcon = LoadImageFromWebOperations(teamIconUrl);
+                        // }
+
                         tableTeamList.add(tableTeam);
                     }
                 }
@@ -212,9 +225,28 @@ public class MainActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
+            mainHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    if(progressDialog.isShowing()) {
+                        progressDialog.dismiss();
+                    }
+                }
+            });
+
             // Log.d("", "GOAL COUNT: "+goalList.size());
             // Log.d("", "MATCH COUNT: "+matchList.size());
             // Log.d("", "TEAM TABLE COUNT: "+tableTeamList.size());
+        }
+    }
+
+    public static Drawable LoadImageFromWebOperations(String teamIconUrl) {
+        try {
+            InputStream is = (InputStream) new URL(teamIconUrl).getContent();
+            Drawable d = Drawable.createFromStream(is, "src name");
+            return d;
+        } catch (Exception e) {
+            return null;
         }
     }
 }
