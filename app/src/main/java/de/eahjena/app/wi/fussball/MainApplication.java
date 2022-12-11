@@ -23,4 +23,15 @@ public class MainApplication extends Application {
     public static ArrayList<TableTeam> tableTeamList = new ArrayList<TableTeam>();
     public static ArrayList<Match> matchList = new ArrayList<Match>();
     public static ArrayList<Goal> goalList = new ArrayList<Goal>();
+
+
+    public static Drawable getTeamIconByTeamName(String teamName) {
+        for (int i = 0; i < tableTeamList.size(); i++) {
+            //Log.d("","hhhh"+tableTeamList.get(i).teamName);
+            if(tableTeamList.get(i).teamName.equals(teamName)) {
+                return tableTeamList.get(i).teamIcon;
+            }
+        }
+        return null;
+    }
 }
