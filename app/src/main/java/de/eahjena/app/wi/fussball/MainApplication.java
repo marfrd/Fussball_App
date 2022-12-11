@@ -20,6 +20,7 @@ import java.util.List;
 
 public class MainApplication extends Application {
 
+    public static boolean isLoaded = false;
     public static ArrayList<TableTeam> tableTeamList = new ArrayList<TableTeam>();
     public static ArrayList<Match> matchList = new ArrayList<Match>();
     public static ArrayList<Goal> goalList = new ArrayList<Goal>();

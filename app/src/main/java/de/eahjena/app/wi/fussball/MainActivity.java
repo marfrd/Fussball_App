@@ -41,7 +41,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        new fetchData().start();
+        if(!MainApplication.isLoaded) {
+            new fetchData().start();
+            MainApplication.isLoaded = true;
+        }
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
