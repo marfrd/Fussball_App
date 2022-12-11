@@ -5,6 +5,8 @@ import static de.eahjena.app.wi.fussball.MainApplication.matchList;
 import static de.eahjena.app.wi.fussball.MainApplication.tableTeamList;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,6 +89,8 @@ public class ErgebnisseAdapter extends RecyclerView.Adapter<ErgebnisseAdapter.Vi
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
 
+        viewHolder.itemView.setTag(matchList.get(position).matchId);
+        viewHolder.itemView.setOnClickListener(globalClickListener);
 
         viewHolder.getTvTeamName1().setText(matchList.get(position).team1);
         viewHolder.getIvTeamLogo1().setImageDrawable(getTeamIconByTeamName(matchList.get(position).team1));
@@ -105,4 +109,14 @@ public class ErgebnisseAdapter extends RecyclerView.Adapter<ErgebnisseAdapter.Vi
     public int getItemCount() {
         return matchList.size();
     }
+
+    private View.OnClickListener globalClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            int matchId = (int) v.getTag();
+            Intent intent= new Intent(context, ActivitySpiel.class);
+            intent.putExtra("matchId",matchId);
+            context.startActivity(intent);
+        }
+    };
 }

@@ -35,4 +35,14 @@ public class MainApplication extends Application {
         }
         return null;
     }
+
+    public static Match getMatchByMatchId(int matchId) {
+        for (int i = 0; i < matchList.size(); i++) {
+            //Log.d("","hhhh"+tableTeamList.get(i).teamName);
+            if(matchList.get(i).matchId == matchId) {
+                return matchList.get(i);
+            }
+        }
+        return null;
+    }
 }
