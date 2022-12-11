@@ -11,13 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
+import static de.eahjena.app.wi.fussball.MainApplication.tableTeamList;
 
 public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> {
 
     // private String[] localDataSet;
 
     Context context;
-    ArrayList<TableTeam> tableTeamList;
 
     /**
      * Provide a reference to the type of views that you are using
@@ -71,7 +71,6 @@ public class TableAdapter extends RecyclerView.Adapter<TableAdapter.ViewHolder> 
      */
     public TableAdapter(Context context, ArrayList<TableTeam> tableTeamList) {
         this.context = context;
-        this.tableTeamList = tableTeamList;
     }
 
     // Create new views (invoked by the layout manager)
