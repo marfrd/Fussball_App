@@ -55,6 +55,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button btnErgebnisse = (Button)findViewById(R.id.btn_ergebnisse);
+        btnErgebnisse.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(MainActivity.this, ActivityErgebnisse.class);
+                startActivity(i);
+            }
+        });
+
     }
 
     class fetchData extends Thread {
