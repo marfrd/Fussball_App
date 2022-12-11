@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">Fussball_App</string>
     <string name="btn1">Tabelle</string>
+    <string name="home_text">Herzlich willkommen zur Android App für Fußball Fans. Hier finden Sie die aktuelle Tabelle , alle Spielergebnisse und weitere Informationen über Vereine und Spieler. Die Daten stammen von OpenLigaDB</string>
+    <string name="buttonTabelle">Tabelle</string>
 </resources>
