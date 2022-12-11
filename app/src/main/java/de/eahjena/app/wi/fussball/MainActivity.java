@@ -2,8 +2,7 @@ package de.eahjena.app.wi.fussball;
 
 import static de.eahjena.app.wi.fussball.MainApplication.goalList;
 import static de.eahjena.app.wi.fussball.MainApplication.matchList;
-
-import androidx.appcompat.app.AppCompatActivity;
+import static de.eahjena.app.wi.fussball.MainApplication.tableTeamList;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,9 +11,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+// import org.json.XML;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -24,6 +26,8 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -55,20 +59,22 @@ public class MainActivity extends AppCompatActivity {
 
         public void run() {
 
+
+            // GOALS + MATCHES
+
             try {
-                URL url = new URL("https://api.openligadb.de/getmatchdata/bl1/2020/8");
+                URL url = new URL("https://api.openligadb.de/getmatchdata/bl1");
                 HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
                 InputStream inputStream = httpURLConnection.getInputStream();
                 BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
                 String line;
-
                 while((line = bufferedReader.readLine()) != null) {
-
                     data = data + line;
-
                 }
 
                 if(!data.isEmpty()) {
+                    // JSONObject json = XML.toJSONObject(data);
                     JSONArray result = new JSONArray(data);
 
                     for (int i  = 0; i < result.length(); i++) {
@@ -98,9 +104,7 @@ public class MainActivity extends AppCompatActivity {
                             goals.add(goal);
                         }
 
-
                         // Match
-
                         int matchID = matchJson.getInt("matchID");
                         String team1 = matchJson.getJSONObject("team1").getString("teamName");
                         String team2 = matchJson.getJSONObject("team2").getString("teamName");
@@ -127,12 +131,9 @@ public class MainActivity extends AppCompatActivity {
                         );
                         matchList.add(match);
 
-
-                        Log.d(" ", matchJson.toString());
+                        // Log.d(" ", matchJson.toString());
                     }
                 }
-
-
             } catch (MalformedURLException e) {
                 e.printStackTrace();
             } catch (IOException e) {
@@ -149,6 +150,71 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             */
+
+
+            // TABLETEAMS
+
+            try {
+                URL url = new URL("https://api.openligadb.de/getbltable/bl1/2022");
+                HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
+                InputStream inputStream = httpURLConnection.getInputStream();
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream));
+
+                String line;
+                data = "";
+                while((line = bufferedReader.readLine()) != null) {
+                    data = data + line;
+                }
+
+                if(!data.isEmpty()) {
+                    JSONArray result = new JSONArray(data);
+
+                    for (int i  = 0; i < result.length(); i++) {
+                        JSONObject teamTable = result.getJSONObject(i);
+
+                        int teamInfoId = teamTable.getInt("teamInfoId");
+                        String teamName = teamTable.getString("teamName");
+                        String shortName = teamTable.getString("shortName");
+                        int matches = teamTable.getInt("matches");
+                        int won = teamTable.getInt("won");
+                        int draw = teamTable.getInt("draw");
+                        int lost = teamTable.getInt("lost");
+                        int goals = teamTable.getInt("goals");
+                        int opponentGoals = teamTable.getInt("opponentGoals");
+                        int points = teamTable.getInt("points");
+                        String teamIconUrl = teamTable.getString("teamIconUrl");
+
+                        TableTeam tableTeam = new TableTeam(
+                                i + 1,
+                                teamInfoId,
+                                teamName,
+                                shortName,
+                                matches,
+                                won,
+                                draw,
+                                lost,
+                                goals,
+                                opponentGoals,
+                                points,
+                                teamIconUrl
+                        );
+
+                        tableTeamList.add(tableTeam);
+                    }
+                }
+
+
+            } catch (MalformedURLException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            // Log.d("", "GOAL COUNT: "+goalList.size());
+            // Log.d("", "MATCH COUNT: "+matchList.size());
+            // Log.d("", "TEAM TABLE COUNT: "+tableTeamList.size());
         }
     }
 }
