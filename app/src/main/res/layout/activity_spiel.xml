@@ -13,14 +13,18 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginStart="-200dp"
-        app:srcCompat="@drawable/a_1_fc_nuernberg"/>
+        app:srcCompat="@drawable/a_1_fc_nuernberg"
+        android:layout_marginLeft="-200dp"
+        tools:ignore="MissingConstraints"
+        android:contentDescription="TODO" />
 
     <ImageView
         android:id="@+id/iv_teamLogo2"
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:layout_marginStart="200dp"
-        app:srcCompat="@drawable/a_1_fc_nuernberg" />
+        app:srcCompat="@drawable/a_1_fc_nuernberg"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/tv_finalResult"
@@ -30,7 +34,8 @@
         android:textSize="30dp"
         android:gravity="center"
         android:text="12:12"
-        android:textColor="#ffffff" />
+        android:textColor="#ffffff"
+        tools:ignore="MissingConstraints" />
 
     <TextView
         android:id="@+id/tv_midResult"
@@ -77,37 +82,11 @@
         android:text="Spielstart:"
         android:textColor="#ffffff" />
 
-    <TextView
-        android:id="@+id/tv_stadion"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:paddingVertical="1dp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_matchDateTime"
-        android:gravity="start"
-        android:textSize="18dp"
-        android:text="Stadion:"
-        android:textColor="#ffffff" />
-
-    <TextView
-        android:id="@+id/tv_viewers"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:paddingVertical="1dp"
-        app:layout_constraintTop_toBottomOf="@+id/tv_stadion"
-        android:gravity="start"
-        android:textSize="18dp"
-        android:text="Zuschauer:"
-        android:textColor="#ffffff" />
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/goals"
         android:layout_marginTop="260dp"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-
 
 
 
@@ -123,3 +102,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+
