@@ -19,7 +19,6 @@ import androidx.appcompat.content.res.AppCompatResources;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-// import org.json.XML;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -35,8 +34,8 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    Handler mainHandler = new Handler();
-    ProgressDialog progressDialog;
+    private final Handler mainHandler = new Handler();
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
